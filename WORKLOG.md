@@ -1,21 +1,21 @@
 # Work Log
 
-## GROUP MEMBER 1
+## Gavin Robalino
 
-### date x
+### 5/22
 
-info
+Created lesson plan
 
 ### date y
 
 info
 
 
-## GROUP MEMBER 2
+## Aleksandra Shifrina
 
-### date x
+### 5/22
 
-info
+Created lesson plan
 
 ### date y
 
