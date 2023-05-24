@@ -5,27 +5,25 @@ StringDict morseDictRev;
 
 
 void setup() {
-  String[] keys = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+  String[] keys = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", " "};
   String[] values = {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",
-".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."}; 
+".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--..","  "}; 
  
-
   morseDict = new StringDict(keys, values); 
   morseDictRev = new StringDict(values, keys); 
-  
+
   String[] combos = {". ", "- ", "--", "..", ".-", "-.", "  ", " .", " -"};
 
   ArrayList<String> num = new ArrayList<>(Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9"));
-  print(num.toArray()); 
+
   Collections.shuffle(num);
-  print(num.toArray()); 
   String[] nums = num.toArray(new String[num.size()]); 
   StringDict map = new StringDict(combos, nums);
   StringDict mapRev = new StringDict(nums, combos);
   
-  println(encoder("hi", map)); 
+  println(encoder("hi my name is sasha", map)); 
   
-  String d = encoder("hi", map);
+  String d = encoder("hi my name is sasha", map);
   println(decoder(d, mapRev));
 }
 
@@ -58,7 +56,7 @@ String encoder(String text, StringDict map) {
     morse += morseDict.get(temp) + " ";  
   }
   
-  for (int i = 0; i < morse.length(); i+=2) {
+  for (int i = 0; i < morse.length()-1; i+=2) {
     String temp = morse.substring(i, i+2); 
     cipher += map.get(temp); 
   }
