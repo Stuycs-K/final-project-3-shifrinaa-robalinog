@@ -7,16 +7,12 @@ void setup() {
   String[] values = {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",
 ".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."}; 
  
-
-  morseDict = new StringDict(keys, values); 
-  //print(morseDict); 
+  morseDict = new StringDict(keys, values);  
   
   String[] combos = {". ", "- ", "--", "..", ".-", "-.", "  ", " .", " -"};
 
-  ArrayList<String> num = new ArrayList<>(Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9");
-  print(num.toArray()); 
+  ArrayList<String> num = new ArrayList<>(Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9"));
   Collections.shuffle(num);
-  print(num.toArray()); 
   String[] nums = num.toArray(new String[num.size()]); 
   StringDict map = new StringDict(combos, nums);
   
@@ -37,7 +33,7 @@ String encoder(String text, StringDict map) {
     morse += morseDict.get(temp) + " ";  
   }
   
-  for (int i = 0; i < morse.length(); i+=2) {
+  for (int i = 0; i < morse.length()-1; i+=2) {
     String temp = morse.substring(i, i+2); 
     cipher += map.get(temp); 
   }
