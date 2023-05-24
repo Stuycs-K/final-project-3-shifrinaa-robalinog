@@ -9,13 +9,22 @@ void setup() {
  
 
   morseDict = new StringDict(keys, values); 
-  print(morseDict); 
+  morseDictRev = new StringDict(values, keys); 
 }
 
 void loop() {
   
 }
 
-StringDict() encoder(String text) {
-  
+//StringDict encoder(String text) {
+//  return StringDict;
+//}
+
+
+String decoder(String encoded, StringDict map){
+  String decoded = "";
+  for(int i = 0; i < encoded.length(); i++){
+    decoded += morseDictRev.get(map.get(encoded[i]))
+  }
+  return decoded;
 }
