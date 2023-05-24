@@ -6,9 +6,10 @@
 
 Created lesson plan
 
-### date y
+### 5/23
 
-info
+Created scanner for reading in plain text files
+Research
 
 
 ## Aleksandra Shifrina
@@ -17,6 +18,6 @@ info
 
 Created lesson plan
 
-### date y
+### 5/23
 
-info
+Created char to Morse dict for Morbit cipher encoder
