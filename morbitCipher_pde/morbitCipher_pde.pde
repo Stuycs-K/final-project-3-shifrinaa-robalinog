@@ -2,12 +2,14 @@ import java.util.*;
 
 StringDict morseDict; 
 StringDict morseDictRev; 
+StringDict map; 
+StringDict mapRev; 
 
 
 void setup() {
   String[] keys = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", " "};
   String[] values = {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",
-".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--..","  "}; 
+".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."," "}; 
  
   morseDict = new StringDict(keys, values); 
   morseDictRev = new StringDict(values, keys); 
@@ -15,40 +17,17 @@ void setup() {
   String[] combos = {". ", "- ", "--", "..", ".-", "-.", "  ", " .", " -"};
 
   ArrayList<String> num = new ArrayList<>(Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9"));
-
   Collections.shuffle(num);
   String[] nums = num.toArray(new String[num.size()]); 
-  StringDict map = new StringDict(combos, nums);
-  StringDict mapRev = new StringDict(nums, combos);
+  
+  map = new StringDict(combos, nums);
+  print(map);
+  mapRev = new StringDict(nums, combos);
   
   println(encoder("hi my name is sasha", map)); 
   
   String d = encoder("hi my name is sasha", map);
   println(decoder(d, mapRev));
-}
-
-String decoder(String encoded, StringDict map){
-  String symbols = "";
-  String decoded = "";
-  for(int i = 0; i < encoded.length(); i++){
-    symbols += (map.get("" + encoded.charAt(i)));
-  }
-  String ch = "";
-  for(int i = 0; i < symbols.length(); i++){
-    if(symbols.charAt(i) != ' '){
-      ch += symbols.charAt(i);
-    }
-    else{
-      if(i+2 < symbols.length() && symbols.charAt(i+i) == ' '){
-        decoded += " ";
-      }
-      else{
-        decoded += morseDictRev.get(ch);
-        ch = "";
-      }
-    }
-  }
-  return decoded;
 }
 
 String encoder(String text, StringDict map) {
@@ -67,4 +46,30 @@ String encoder(String text, StringDict map) {
   }
   
   return cipher;
+}
+
+String decoder(String encoded, StringDict map){
+  String symbols = "";
+  String decoded = "";
+  for(int i = 0; i < encoded.length(); i++){
+    symbols += (map.get("" + encoded.charAt(i)));
+  }
+  String ch = "";
+  for(int i = 0; i < symbols.length(); i++){
+    if(symbols.charAt(i) != ' '){
+      ch += symbols.charAt(i);
+    }
+    else{ 
+      decoded += morseDictRev.get(ch); 
+      ch = ""; 
+      if(i+1 < symbols.length() && symbols.charAt(i+1) == ' '){
+        decoded += " ";
+        i += 2; 
+      }
+    }
+  }
+  if (ch.length() > 0) {
+    decoded += morseDictRev.get(ch); 
+  }
+  return decoded;
 }
