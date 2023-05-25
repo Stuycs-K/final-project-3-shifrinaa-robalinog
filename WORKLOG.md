@@ -22,3 +22,10 @@ Created lesson plan
 
 Created char to Morse dict for Morbit cipher encoder
 Almost finished encoder
+Finished encoder (10:00pm)
+
+### 5/24
+
+Fixed decoder out of bounds issue with separating words 
+Fixed cut off decoded message 
+Next step: replacing space character with 'x' to fix encoder 
