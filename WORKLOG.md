@@ -9,9 +9,15 @@ Created lesson plan
 ### 5/23
 
 Created scanner for reading in plain text files
- 
 Almost finished decoder
 
+### 5/24
+
+*sick*
+
+### 5/25
+
+Presenation format created and beginnings of encoder/decoder sections filled in
 
 ## Aleksandra Shifrina
 
