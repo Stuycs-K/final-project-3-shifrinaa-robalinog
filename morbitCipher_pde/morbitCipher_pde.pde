@@ -9,25 +9,24 @@ StringDict mapRev;
 void setup() {
   String[] keys = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", " "};
   String[] values = {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",
-".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."," "}; 
+".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--..","xx"}; 
  
   morseDict = new StringDict(keys, values); 
   morseDictRev = new StringDict(values, keys); 
 
-  String[] combos = {". ", "- ", "--", "..", ".-", "-.", "  ", " .", " -"};
+  String[] combos = {".x", "-x", "--", "..", ".-", "-.", "xx", "x.", "x-"};
 
   ArrayList<String> num = new ArrayList<>(Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9"));
   Collections.shuffle(num);
   String[] nums = num.toArray(new String[num.size()]); 
   
   map = new StringDict(combos, nums);
-  print(map);
   mapRev = new StringDict(nums, combos);
   
   println(encoder("hi my name is sasha", map)); 
   
-  String d = encoder("hi my name is sasha", map);
-  println(decoder(d, mapRev));
+  //String d = encoder("hi my name is sasha", map);
+  //println(decoder(d, mapRev));
 }
 
 String encoder(String text, StringDict map) {
@@ -37,7 +36,10 @@ String encoder(String text, StringDict map) {
   
   for (int i = 0; i < text.length(); i++) {
     String temp = "" + Character.toUpperCase(text.charAt(i)); 
-    morse += morseDict.get(temp) + " ";  
+    morse += morseDict.get(temp);
+    if (i+1 < text.length() && text.charAt(i+1) != ' ') {
+        morse += " "; 
+    }
   }
   println(morse);
   for (int i = 0; i < morse.length()-1; i+=2) {
