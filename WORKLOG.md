@@ -17,7 +17,7 @@ Almost finished decoder
 
 ### 5/25
 
-Presenation format created and beginnings of encoder/decoder sections filled in
+Presentation format created and beginnings of encoder/decoder sections filled in
 
 ## Aleksandra Shifrina
 
@@ -35,4 +35,6 @@ Finished encoder (10:00pm)
 
 Fixed decoder out of bounds issue with separating words  
 Fixed cut off decoded message  
-Next step: replacing space character with 'x' to fix encoder  
+Next step: replacing space character with 'x' to fix encoder  \
+
+### 5/25

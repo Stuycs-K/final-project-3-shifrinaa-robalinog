@@ -24,4 +24,9 @@ It by first converting the text into Morse code which is written as a series of 
 ## Visualization
 
 
+
+## Homework
+
+
+
 [Try it out yourself](https://toebes.com/codebusters/MorbitEncrypt.html)
