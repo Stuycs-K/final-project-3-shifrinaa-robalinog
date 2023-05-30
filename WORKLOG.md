@@ -19,6 +19,26 @@ Almost finished decoder
 
 Presentation format created and beginnings of encoder/decoder sections filled in
 
+### 5/26
+
+*sick*
+
+### 5/27
+
+*went to the ER*
+
+### 5/28
+
+*sick*
+
+### 5/29
+
+*sick*
+
+### 5/30
+
+
+
 ## Aleksandra Shifrina
 
 ### 5/22
