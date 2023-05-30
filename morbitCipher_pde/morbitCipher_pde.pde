@@ -5,8 +5,13 @@ StringDict morseDictRev;
 StringDict map; 
 StringDict mapRev; 
 
+String message; 
+String d;
+
 
 void setup() {
+  size(800, 600);
+  background(255);
   String[] keys = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", " "};
   String[] values = {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",
 ".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--..","xx"}; 
@@ -23,10 +28,30 @@ void setup() {
   map = new StringDict(combos, nums);
   mapRev = new StringDict(nums, combos);
   
-  println(encoder("hi my name is sasha", map)); 
+  message = "hi my name is sasha"; 
   
-  //String d = encoder("hi my name is sasha", map);
-  //println(decoder(d, mapRev));
+  println(encoder(message, map)); 
+  
+  d = encoder("hi my name is sashas", map);
+  println(decoder(d, mapRev));
+  
+}
+
+void draw() {
+  stroke(0);
+  fill(0); 
+  textSize(30); 
+  text("Plain Text", 280, 100); 
+  noFill(); 
+  rect(200, 125, 300, 80, 30); 
+  text(message, 220, 170); 
+  delay(1000); 
+  line(350, 220, 350, 240);
+  line(350, 240, 335, 230); 
+  line(350, 240, 365, 230);
+  text("Cipher Text", 270, 285); 
+  rect(200, 310, 300, 80, 30); 
+  text(d, 220, 360);
 }
 
 String encoder(String text, StringDict map) {
@@ -37,11 +62,14 @@ String encoder(String text, StringDict map) {
   for (int i = 0; i < text.length(); i++) {
     String temp = "" + Character.toUpperCase(text.charAt(i)); 
     morse += morseDict.get(temp);
-    if (i+1 < text.length() && text.charAt(i+1) != ' ') {
-        morse += " "; 
+    if (i+1 < text.length() && text.charAt(i+1) == ' ') {
+      morse += "xx"; 
+      i += 1; 
+    }
+    else if (i+1 < text.length() && text.charAt(i+1) != ' ') {
+      morse += "x";   
     }
   }
-  println(morse);
   for (int i = 0; i < morse.length()-1; i+=2) {
     String temp = morse.substring(i, i+2); 
     cipher += map.get(temp); 
@@ -58,15 +86,15 @@ String decoder(String encoded, StringDict map){
   }
   String ch = "";
   for(int i = 0; i < symbols.length(); i++){
-    if(symbols.charAt(i) != ' '){
+    if(symbols.charAt(i) != 'x'){
       ch += symbols.charAt(i);
     }
     else{ 
       decoded += morseDictRev.get(ch); 
       ch = ""; 
-      if(i+1 < symbols.length() && symbols.charAt(i+1) == ' '){
+      if(i+1 < symbols.length() && symbols.charAt(i+1) == 'x'){
         decoded += " ";
-        i += 2; 
+        i += 1; 
       }
     }
   }
