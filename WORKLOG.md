@@ -37,6 +37,7 @@ Presentation format created and beginnings of encoder/decoder sections filled in
 
 ### 5/30
 
+*sick*
 
 
 ## Aleksandra Shifrina
