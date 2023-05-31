@@ -1,4 +1,4 @@
-## Gavin Robalino and Aleksandra Shifrina (the real ones)
+## Gavin Robalino and Aleksandra Shifrina
 ## Tommywolf
 
 ##Project Description 
