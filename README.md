@@ -1,1 +1,2 @@
-# THIS DOCUMENT IS REQUIRED
+## Gavin Robalino and Aleksandra Shifrina
+## Tommywolf
