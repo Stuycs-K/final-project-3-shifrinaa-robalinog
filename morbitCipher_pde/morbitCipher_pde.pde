@@ -63,8 +63,7 @@ String encoder(String text, StringDict map) {
     if (i+1 < text.length()) {
       int check = (int) text.charAt(i+1); 
       if (check != 32 && ((check < 65) || (check > 90 && check < 97) || (check > 122))) {
-      String c = "" + text.charAt(i+1);
-      text = text.replace(c, "");
+      text = text.replace(""+(char)check, "");
     }
     }
     String temp = "" + Character.toUpperCase(text.charAt(i)); 
