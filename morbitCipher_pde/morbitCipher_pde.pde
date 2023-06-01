@@ -55,7 +55,6 @@ void draw() {
 }
 
 String encoder(String text, StringDict map) {
-  //convert text to morse 
   String morse = "";  
   String cipher = ""; 
   
