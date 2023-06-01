@@ -90,7 +90,7 @@ Our decoder method also takes a string, your encoded message, and a dictionary, 
 
 The method loops through the string and converts the text into morse code. Next, the method loops through the morse code and adds the morse symbols onto a string until it encounters an *x*. 
 
-If it does encounter an *x*, it converts the string of symbols into readable text using a dictionary and adds it to the final string. Then, the string we are using to store the the symbols is set to `**` so we can start reading in a new symbols. 
+If it does encounter an *x*, it converts the string of symbols into readable text using a dictionary and adds it to the final string. Then, the string we are using to store the symbols is emptied so we can start reading in a new symbol. 
 
 These *x*'s represent the end and start of new characters. The method must also check if there is a second *x* directly after the first because that would mean we reached the end of a word. If there is, we skip the second *x* and add a space to the final message. 
 
