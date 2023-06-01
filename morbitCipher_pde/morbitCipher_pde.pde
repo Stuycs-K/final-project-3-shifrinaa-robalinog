@@ -28,11 +28,11 @@ void setup() {
   map = new StringDict(combos, nums);
   mapRev = new StringDict(nums, combos);
   
-  message = "hi my name is sasha"; 
+  message = "hi, my name is sashas!!,"; 
   
   println(encoder(message, map)); 
   
-  d = encoder("hi my name is sashas", map);
+  d = encoder("hi, my name is sashas!!,", map);
   println(decoder(d, mapRev));
   
 }
@@ -60,6 +60,13 @@ String encoder(String text, StringDict map) {
   String cipher = ""; 
   
   for (int i = 0; i < text.length(); i++) {
+    if (i+1 < text.length()) {
+      int check = (int) text.charAt(i+1); 
+      if (check != 32 && ((check < 65) || (check > 90 && check < 97) || (check > 122))) {
+      String c = "" + text.charAt(i+1);
+      text = text.replace(c, "");
+    }
+    }
     String temp = "" + Character.toUpperCase(text.charAt(i)); 
     morse += morseDict.get(temp);
     if (i+1 < text.length() && text.charAt(i+1) == ' ') {
