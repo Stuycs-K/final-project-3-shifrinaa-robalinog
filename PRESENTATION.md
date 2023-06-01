@@ -18,6 +18,10 @@ To encrypt a message using the Morbit cipher, follow these steps:
 
 3. Once you have the message in Morse code, apply polygramic substitution through fractionation. This involves substituting groups of Morse code letters with different Morse code sequences. The specific substitution rules used in Morbit are based on polygramic fractionation techniques.
 
+| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
+|---|---|---|---|---|---|---|---|---|
+|.. |.- |./ |-. |-- |-/ |/. |/- |// |
+
 4. After applying the polygramic fractionation, you will have a new set of Morse code sequences representing the encrypted message.
 
 5. Convert the encrypted Morse code back into a ciphertext message by reversing the substitution. Replace each Morse code sequence with its corresponding letter.
