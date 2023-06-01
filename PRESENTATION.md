@@ -30,17 +30,23 @@ The resulting ciphertext is your encrypted message.
 
 **Polygramic Fractionation** : Polygramic fractionation is a cryptographic technique that involves dividing plaintext into groups of multiple characters, called polygrams, and applying substitution or reorganization to create ciphertext. By breaking up the plaintext and introducing complex substitutions at the polygram level, polygramic fractionation enhances the security of a cipher by increasing confusion and diffusion, making it more resistant to cryptanalysis methods like frequency analysis. It adds an additional layer of complexity to the encryption process, making it harder for unauthorized individuals to decipher the encrypted message without knowledge of the specific substitution rules.
 
-Our encoder method takes your text that you want to encrypt and a dictionary containing the morse code mapping system as inputs.
+Our encoder method takes your text that you want to encrypt and a dictionary containing the morse code mapping system as inputs. The dictionary is shuffled at setup, so with every run the encoder returns a different ciphertext for the same plaintext. 
+Any punctuation in the plaintext will be removed with an edge case in the encoder, before our morse converter. 
 As the method loops through the text, it adds the next morse block and checks if the next character is a space or not. If it is, then that means we're starting a new word and we need to skip a character and add a *xx*. If it isn't, then we are starting a new character and we only need to add a single *x*.
 Once the text has been looped through, the method loops through our new morse code and converts it to numbers through a loop. That's our encrypted text.
 
 ```java
 String encoder(String text, StringDict map) {
-  //convert text to morse
   String morse = "";  
   String cipher = "";
 
   for (int i = 0; i < text.length(); i++) {
+    if (i+1 < text.length()) {
+      int check = (int) text.charAt(i+1); 
+      if (check != 32 && ((check < 65) || (check > 90 && check < 97) || (check > 122))) {
+      text = text.replace(""+(char)check, "");
+      }
+    }
     String temp = "" + Character.toUpperCase(text.charAt(i));
     morse += morseDict.get(temp);
     if (i+1 < text.length() && text.charAt(i+1) == ' ') {
@@ -60,7 +66,6 @@ String encoder(String text, StringDict map) {
 }
 ```
 
-* Randomized mapping system implementation
 
 ## Decoding
 
