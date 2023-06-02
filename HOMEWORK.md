@@ -1,1 +1,1 @@
-[Morbit Cipher Recap THM](https://tryhackme.com/room/morbitcipherrecap)
+[Morbit Cipher Recap THM](tryhackme.com/jr/morbitcipherrecap)
