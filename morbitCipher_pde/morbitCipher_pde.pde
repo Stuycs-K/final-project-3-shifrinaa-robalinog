@@ -7,11 +7,13 @@ StringDict mapRev;
 
 String message; 
 String d;
+int currentCharIndex = 0;
 
 
 void setup() {
-  size(800, 600);
+  size(1000, 600);
   background(255);
+  textSize(20);
   String[] keys = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", " "};
   String[] values = {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",
 ".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--..","xx"}; 
@@ -32,26 +34,61 @@ void setup() {
   
   println(encoder(message, map)); 
   
-  d = encoder("hi my name is sashas", map);
+  d = encoder("hi my name is sasha", map);
   println(decoder(d, mapRev));
   
 }
 
 void draw() {
+  background(255);
+
+  // Animate the encoding process
+  if (frameCount % 10 == 0 && currentCharIndex < message.length()) {
+    currentCharIndex++;
+  }
+
+  // Display plaintext
+  String currentText = message.substring(0, currentCharIndex);
+  drawBox(400, 100, currentText, color(255, 200, 200));
+
+  // Display morse code
+  String morseCode = convertToMorseCode(currentText);
+  drawBox(400, 200, morseCode, color(200, 200, 255));
+
+  // Display cipher text
+  String cipherText = encoder(currentText, map);
+  drawBox(400, 300, cipherText, color(200, 255, 200));
+
+  // Display combos and numbers
+  displayCombosAndNumbers(map, 100, 400);
+}
+
+void drawBox(float centerX, float centerY, String label, color boxColor) {
+  float boxWidth = 600;
+  float boxHeight = 50;
+
+  rectMode(CENTER);
+
   stroke(0);
-  fill(0); 
-  textSize(30); 
-  text("Plain Text", 280, 100); 
-  noFill(); 
-  rect(200, 125, 300, 80, 30); 
-  text(message, 220, 170); 
-  delay(1000); 
-  line(350, 220, 350, 240);
-  line(350, 240, 335, 230); 
-  line(350, 240, 365, 230);
-  text("Cipher Text", 270, 285); 
-  rect(200, 310, 300, 80, 30); 
-  text(d, 220, 360);
+  fill(boxColor);
+  rect(centerX, centerY, boxWidth, boxHeight, 10);
+
+  fill(0);
+  textAlign(CENTER, CENTER);
+  text(label, centerX, centerY);
+}
+
+void displayCombosAndNumbers(StringDict dict, float x, float y) {
+  String[] combos = dict.keyArray();
+  String[] numbers = dict.valueArray();
+  
+  for (int i = 0; i < combos.length; i++) {
+    float textX = x + (i % 3) * 200;
+    float textY = y + floor(i / 3) * 50;
+    String combo = combos[i];
+    String number = numbers[i];
+    text(combo + ": " + number, textX, textY);
+  }
 }
 
 String encoder(String text, StringDict map) {
@@ -102,4 +139,23 @@ String decoder(String encoded, StringDict map){
     decoded += morseDictRev.get(ch); 
   }
   return decoded;
+}
+
+String convertToMorseCode(String text) {
+  // Define the Morse code representations for each letter
+  String[] morseCodeLetters = {
+    ".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.."
+  };
+  
+  String morseCode = "";
+  for (char c : text.toUpperCase().toCharArray()) {
+    if (Character.isLetter(c)) {
+      int index = c - 'A';
+      morseCode += morseCodeLetters[index] + " ";
+    } else if (c == ' ') {
+      morseCode += " ";
+    }
+  }
+  
+  return morseCode.trim();
 }
