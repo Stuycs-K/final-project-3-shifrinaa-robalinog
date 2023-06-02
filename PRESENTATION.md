@@ -124,7 +124,7 @@ String decoder(String encoded, StringDict map){
 ```
 
 ## Visualization
-
+We visualized the Morbit cipher on Processing to show you how it works...
 
 
 ## Homework
